@@ -92,13 +92,14 @@ class _forgot_pageState extends State<forgot_page> {
                   textinputfield(
                       controllers: email,
                       validator: validateEmail,
-                      icon: Icons.lock_open_sharp,
+
                       text: "Email Address"),
                   SizedBox(
                     height: 20,
                   ),
                   Container(
-                    width: 385,
+                    width: MediaQuery.of(context).size.width,
+
                     height: 48,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),

@@ -36,9 +36,6 @@ class MyApp extends StatelessWidget {
                 height: 43,
                 width: 200,
               ),
-              SizedBox(
-                height: 10,
-              ),
               Text(
                 "WAITER",
                 style: GoogleFonts.alike(
