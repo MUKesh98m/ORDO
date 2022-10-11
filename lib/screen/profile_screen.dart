@@ -145,28 +145,6 @@ class _profile_screenState extends State<profile_screen> {
                 SizedBox(
                   height: 50,
                 ),
-                // LiteRollingSwitch(
-                //   value: false,
-                //   width: 300,
-                //   textOffColor: Colors.white,
-                //   textOn: '           Close Shift',
-                //   textSize: 22,
-                //   textOff: 'Start Shift            ',
-                //   colorOn: Colors.red,
-                //   colorOff: Colors.green,
-                //   iconOn: Icons.keyboard_arrow_left,
-                //   iconOff: Icons.keyboard_arrow_right,
-                //   animationDuration: const Duration(milliseconds: 300),
-                //   onChanged: (bool state) {
-                //     print('turned ${(state) ? 'on' : 'off'}');
-                //   },
-                //   onDoubleTap: () {},
-                //   onSwipe: () {
-                //     bottomsheet();
-                //   },
-                //   onTap: () {},
-                // ),
-
                 Container(
                   alignment: Alignment.center,
                   height: 65,
@@ -281,7 +259,6 @@ class _profile_screenState extends State<profile_screen> {
       context: context,
       builder: (context) {
         return Container(
-          height: 350,
           child: Padding(
               padding: EdgeInsets.only(left: 20, top: 20, right: 20),
               child: SingleChildScrollView(
@@ -305,124 +282,7 @@ class _profile_screenState extends State<profile_screen> {
                           fontFamily: 'SF Pro Display',
                           color: HexColor("#99A2AB")),
                     ),
-                    SizedBox(
-                      height: 20,
-                    ),
-
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     Container(
-                    //       height: 35,
-                    //       width: 72,
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //           color: HexColor("#07A279"),
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(8))),
-                    //       child: Text(
-                    //         "€100",
-                    //         style: TextStyle(
-                    //           color: HexColor("#ffffff"),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       height: 35,
-                    //       width: 72,
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //               color: HexColor("#07A279"), width: 1),
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(8))),
-                    //       child: Text(
-                    //         "€200",
-                    //         style: TextStyle(
-                    //           color: HexColor("#07A279"),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       height: 35,
-                    //       width: 72,
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //             width: 1,
-                    //             color: HexColor("#07A279"),
-                    //           ),
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(8))),
-                    //       child: Text(
-                    //         "€300",
-                    //         style: TextStyle(
-                    //           color: HexColor("#07A279"),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     Container(
-                    //       height: 35,
-                    //       width: 72,
-                    //       alignment: Alignment.center,
-                    //       decoration: BoxDecoration(
-                    //           border: Border.all(
-                    //             width: 1,
-                    //             color: HexColor("#07A279"),
-                    //           ),
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(8))),
-                    //       child: Text(
-                    //         "Other",
-                    //         style: TextStyle(
-                    //           color: HexColor("#07A279"),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Type your own amount",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        height: 1.5,
-                        fontSize: 16,
-                        color: HexColor("#001921"),
-                        fontFamily: 'SF Pro Display',
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    textinputfield(
-                      controllers: email,
-                      validator: validateEmail,
-                      text: "Enter the amount",
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: 385,
-                      height: 48,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStatePropertyAll(
-                                  HexColor('#07A279'))),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => new_password()));
-                          },
-                          child: Text("Start Shift Now     >")),
-                    ),
+                    tabs(),
                   ],
                 ),
               )),
@@ -432,67 +292,148 @@ class _profile_screenState extends State<profile_screen> {
   }
 
   tabs() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          // give the tab bar a height [can change hheight to preferred height]
-          Container(
-            height: 45,
-            width: 300,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(
-                25.0,
-              ),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              // give the indicator a decoration (color and border radius)
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  25.0,
+    return DefaultTabController(
+      length: 4,
+      child: Container(
+        // color: Colors.red,
+        height: 248,
+        child: Column(
+          children: [
+            TabBar(
+              indicator: ShapeDecoration(
+                color: HexColor("#07A279"),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
-                color: Colors.green,
               ),
               labelColor: Colors.white,
-              unselectedLabelColor: Colors.black,
-              tabs: [
-                // first tab [you can add an icon using the icon property]
-                Tab(
-                  text: 'Place Bid',
-                ),
-
-                // second tab [you can add an icon using the icon property]
-                Tab(
-                  text: 'Buy Now',
-                ),
-              ],
-            ),
-          ),
-          // tab bar view here
-          Expanded(
-            child: TabBarView(
+              unselectedLabelColor: HexColor("#07A279"),
               controller: _tabController,
-              children: [
-                // first tab bar view widget
-                new_password(),
-
-                // second tab bar view widget
-                Center(
-                  child: Text(
-                    'Buy Now',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                    ),
+              tabs: [
+                Container(
+                  height: 35,
+                  width: 300,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: HexColor("#07A279"),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: Tab(
+                    text: "€100",
+                  ),
+                ),
+                Container(
+                  height: 35,
+                  width: 152,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: HexColor("#07A279"),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: Tab(
+                    text: "€200",
+                  ),
+                ),
+                Container(
+                  height: 35,
+                  width: 200,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: HexColor("#07A279"),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: Tab(
+                    text: "€300",
+                  ),
+                ),
+                Container(
+                  height: 35,
+                  width: 152,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: HexColor("#07A279"),
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8))),
+                  child: Tab(
+                    text: "Other",
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            Container(
+              height: 200,
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  // first tab bar view widget
+
+                  // second tab bar view widget
+
+                  tabs1(),
+                  tabs1(),
+                  tabs1(),
+                  tabs1(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  tabs1() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          "Type your own amount",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            height: 1.5,
+            fontSize: 16,
+            color: HexColor("#001921"),
+            fontFamily: 'SF Pro Display',
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        textinputfield(
+          controllers: email,
+          validator: validateEmail,
+          text: "Enter the amount",
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 48,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(HexColor('#07A279'))),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new_password()));
+              },
+              child: Text("Start Shift Now     >")),
+        ),
+      ],
     );
   }
 }
