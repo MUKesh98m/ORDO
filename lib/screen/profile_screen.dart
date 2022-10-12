@@ -23,6 +23,7 @@ class _profile_screenState extends State<profile_screen> {
   List money = ['€100', '€200', '€300', 'Other'];
   TextEditingController email = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  var inputtextvalue = false;
 
   int? defaultChoiceIndex;
 
@@ -240,187 +241,7 @@ class _profile_screenState extends State<profile_screen> {
                                 setState(() {
                                   selectedIndex = index;
                                 });
-                                showModalBottomSheet(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(15),
-                                    ),
-                                  ),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 20, top: 20, right: 20),
-                                          child: SingleChildScrollView(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Starting Balance",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 24,
-                                                    fontFamily:
-                                                        'SF Pro Display',
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      height: 1.5,
-                                                      fontSize: 16,
-                                                      fontFamily:
-                                                          'SF Pro Display',
-                                                      color:
-                                                          HexColor("#99A2AB")),
-                                                ),
-                                                SizedBox(
-                                                  height: 15,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    Wrap(
-                                                      spacing: 8,
-                                                      children: List.generate(
-                                                          money.length,
-                                                          (index) {
-                                                        return ChoiceChip(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          8))),
-                                                          labelPadding:
-                                                              EdgeInsets.only(
-                                                                  left: 15.0,
-                                                                  top: 3,
-                                                                  bottom: 3,
-                                                                  right: 15),
-                                                          label: Text(
-                                                            money[index],
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText2!
-                                                                .copyWith(
-                                                                    color: defaultChoiceIndex ==
-                                                                            index
-                                                                        ? Colors
-                                                                            .white
-                                                                        : Colors
-                                                                            .green,
-                                                                    fontSize:
-                                                                        14),
-                                                          ),
-                                                          selected:
-                                                              defaultChoiceIndex ==
-                                                                  index,
-                                                          side: BorderSide(
-                                                            color:
-                                                                defaultChoiceIndex ==
-                                                                        index
-                                                                    ? Colors
-                                                                        .white
-                                                                    : Colors
-                                                                        .green,
-                                                          ),
-                                                          selectedColor:
-                                                              HexColor(
-                                                                  "#07A279"),
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          onSelected: (value) {
-                                                            setState(() {
-                                                              defaultChoiceIndex =
-                                                                  value
-                                                                      ? index
-                                                                      : defaultChoiceIndex;
-                                                              passvalue();
-                                                            });
-                                                          },
-                                                        );
-                                                      }),
-                                                    )
-                                                  ],
-                                                ),
-                                                Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Type your own amount",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        height: 1.5,
-                                                        fontSize: 16,
-                                                        color:
-                                                            HexColor("#001921"),
-                                                        fontFamily:
-                                                            'SF Pro Display',
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    textinputfield(
-                                                      controllers: email,
-                                                      validator: validateEmail,
-                                                      text: defaultChoiceIndex ==
-                                                              0
-                                                          ? "Enter the amount"
-                                                          : passvalue()
-                                                              .toString(),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 20,
-                                                    ),
-                                                    Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height: 48,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10)),
-                                                      child: ElevatedButton(
-                                                          style: ButtonStyle(
-                                                              backgroundColor:
-                                                                  MaterialStatePropertyAll(
-                                                                      HexColor(
-                                                                          '#07A279'))),
-                                                          onPressed: () {
-                                                            Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            new_password()));
-                                                          },
-                                                          child: Text(
-                                                              "Start Shift Now     >")),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          )),
-                                    );
-                                  },
-                                );
+                                secondsheet();
                               },
                             ),
                           );
@@ -432,10 +253,140 @@ class _profile_screenState extends State<profile_screen> {
       },
     );
   }
-  //
-  // secondsheet() {
-  //   return
-  // }
+
+  secondsheet() {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(15),
+        ),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      context: context,
+      builder: (context) {
+        return Container(
+          child: Padding(
+              padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Starting Balance",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24,
+                        fontFamily: 'SF Pro Display',
+                      ),
+                    ),
+                    Text(
+                      "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                          fontSize: 16,
+                          fontFamily: 'SF Pro Display',
+                          color: HexColor("#99A2AB")),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    tabs(),
+                    tabs1()
+                  ],
+                ),
+              )),
+        );
+      },
+    );
+  }
+
+  tabs() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: 8,
+          children: List.generate(money.length, (index) {
+            return ChoiceChip(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8))),
+              labelPadding:
+                  EdgeInsets.only(left: 15.0, top: 3, bottom: 3, right: 15),
+              label: Text(
+                money[index],
+                style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                    color: defaultChoiceIndex == index
+                        ? Colors.white
+                        : Colors.green,
+                    fontSize: 14),
+              ),
+              selected: defaultChoiceIndex == index,
+              disabledColor: Colors.red,
+              side: BorderSide(
+                color:
+                    defaultChoiceIndex == index ? Colors.white : Colors.green,
+              ),
+              selectedColor: HexColor("#07A279"),
+              backgroundColor: Colors.transparent,
+              onSelected: (value) {
+                setState(() {
+                  defaultChoiceIndex = value ? index : defaultChoiceIndex;
+                  passvalue();
+                });
+              },
+            );
+          }),
+        )
+      ],
+    );
+  }
+
+  tabs1() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Type your own amount",
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            height: 1.5,
+            fontSize: 16,
+            color: HexColor("#001921"),
+            fontFamily: 'SF Pro Display',
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        textinputfield(
+          controllers: email,
+          validator: validateEmail,
+          text: defaultChoiceIndex == 0
+              ? "Enter the amount"
+              : passvalue().toString(),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 48,
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(HexColor('#07A279'))),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new_password()));
+              },
+              child: Text("Start Shift Now     >")),
+        ),
+      ],
+    );
+  }
 
   passvalue() {
     if (defaultChoiceIndex == 0) {

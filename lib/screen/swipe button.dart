@@ -32,11 +32,9 @@ class _StackOverState extends State<StackOver>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Tab bar',
-        ),
-      ),
+
+      backgroundColor: Colors.white,
+
       body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Wrap(
