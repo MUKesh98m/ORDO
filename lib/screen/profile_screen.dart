@@ -7,11 +7,15 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:ui/constant.dart';
 import 'package:ui/screen/new_password.dart';
+import 'package:ui/screen/swipe%20button.dart';
 
 import '../textinputfield.dart';
+import 'chips.dart';
+import 'money.dart';
 
 class profile_screen extends StatefulWidget {
-  const profile_screen({Key? key}) : super(key: key);
+  const profile_screen({Key? key, this.username}) : super(key: key);
+  final username;
 
   @override
   State<profile_screen> createState() => _profile_screenState();
@@ -20,10 +24,10 @@ class profile_screen extends StatefulWidget {
 class _profile_screenState extends State<profile_screen> {
   List menu = ['Barbeque Nations', 'Tung Fu', 'Fusion Fantasia'];
   int selectedIndex = -1;
+  String? username;
   List money = ['€100', '€200', '€300', 'Other'];
   TextEditingController email = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  var inputtextvalue = false;
 
   int? defaultChoiceIndex;
 
@@ -36,6 +40,7 @@ class _profile_screenState extends State<profile_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -105,34 +110,38 @@ class _profile_screenState extends State<profile_screen> {
                   ),
                 ),
                 SizedBox(height: 10),
-                Container(
-                  width: 220,
-                  decoration: BoxDecoration(
-                      color: HexColor("#E5E5E5"),
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/Ellipse1.png",
-                        height: 29,
-                        width: 29,
-                      ),
-                      SizedBox(
-                        width: 2,
-                      ),
-                      Text("Barbecue Nation",
-                          style: GoogleFonts.alike(
-                            fontSize: 16,
-                            color: HexColor("#57616A"),
-                          )),
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.keyboard_arrow_down,
-                            color: HexColor("#57616A"),
-                          ))
-                    ],
+                InkWell(
+                  onTap: () {
+                    bottomsheet();
+                  },
+                  child: Container(
+                    width: 220,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: HexColor("#E5E5E5"),
+                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/Ellipse1.png",
+                          height: 29,
+                          width: 29,
+                        ),
+                        SizedBox(
+                          width: 2,
+                        ),
+                        Text(
+                            selectedIndex == null
+                                ? "Barbecue Nation"
+                                : passvalue1().toString(),
+                            style: GoogleFonts.alike(
+                              fontSize: 16,
+                              color: HexColor("#57616A"),
+                            )),
+                        Icon(Icons.keyboard_arrow_down)
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -170,7 +179,7 @@ class _profile_screenState extends State<profile_screen> {
                           fontWeight: FontWeight.w400),
                     ),
                     onSwipe: () {
-                      bottomsheet();
+                      bottomsheet1();
                     },
                   ),
                 )
@@ -186,6 +195,7 @@ class _profile_screenState extends State<profile_screen> {
     showModalBottomSheet(
       isScrollControlled: true,
       isDismissible: true,
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(15),
@@ -219,6 +229,7 @@ class _profile_screenState extends State<profile_screen> {
                           fontFamily: 'SF Pro Display',
                           color: HexColor("#99A2AB")),
                     ),
+                    // Container(height: 200, child: chips())
                     ListView.builder(
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
@@ -226,26 +237,30 @@ class _profile_screenState extends State<profile_screen> {
                         itemBuilder: (context, index) {
                           return Container(
                             child: ListTile(
-                              // selected: selectedIndex == index ? true : false,
+// selected: selectedIndex == index ? true : false,
 
-                              title: Text(menu[index],
-                                  style: TextStyle(color: Colors.black)),
-                              trailing: selectedIndex == index
-                                  ? Icon(
-                                      Icons.check,
-                                      color: Colors.green,
-                                      size: 30,
-                                    )
-                                  : Text("data"),
-                              onTap: () {
-                                setState(() {
-                                  selectedIndex = index;
-                                });
-                                secondsheet();
-                              },
-                            ),
+                                title: Text(menu[index],
+                                    style: TextStyle(color: Colors.black)),
+                                trailing: selectedIndex == index
+                                    ? Icon(
+                                        Icons.check,
+                                        color: Colors.green,
+                                        size: 30,
+                                      )
+                                    : null,
+                                onTap: () {
+                                  setState(() {
+                                    selectedIndex = index;
+                                    // print(index);
+                                  });
+                                  if (passvalue1() != null) {
+                                    Navigator.pop(context);
+                                  } else {
+                                    print("Please select the value");
+                                  }
+                                }),
                           );
-                        })
+                        }),
                   ],
                 ),
               )),
@@ -254,7 +269,29 @@ class _profile_screenState extends State<profile_screen> {
     );
   }
 
-  secondsheet() {
+  passvalue1() {
+    if (selectedIndex == 0) {
+      // Navigator.pop(context);
+
+      return "Barbeque Nations";
+
+      // print("100");
+    } else if (selectedIndex == 1) {
+      // Navigator.pop(context);
+
+      // print("200");
+      return "Tung Fu";
+    } else {
+      // Navigator.pop(context);
+
+      return "Fusion Fantasia";
+
+      // print("others");
+
+    }
+  }
+
+  bottomsheet1() {
     showModalBottomSheet(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -264,127 +301,126 @@ class _profile_screenState extends State<profile_screen> {
       clipBehavior: Clip.antiAliasWithSaveLayer,
       context: context,
       builder: (context) {
-        return Container(
-          child: Padding(
-              padding: EdgeInsets.only(left: 20, top: 20, right: 20),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Starting Balance",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 24,
-                        fontFamily: 'SF Pro Display',
-                      ),
+        return StatefulBuilder(
+          builder:
+              (BuildContext context, void Function(void Function()) setState) {
+            return Container(
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
+                  padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Starting Balance",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 24,
+                            fontFamily: 'SF Pro Display',
+                          ),
+                        ),
+                        Text(
+                          "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              height: 1.5,
+                              fontSize: 16,
+                              fontFamily: 'SF Pro Display',
+                              color: HexColor("#99A2AB")),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        // Container(height: 210, child: money())
+
+                        Wrap(
+                          spacing: 8,
+                          children: List.generate(money.length, (index) {
+                            return ChoiceChip(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8))),
+                              labelPadding: EdgeInsets.only(
+                                  left: 15.0, top: 3, bottom: 3, right: 15),
+                              label: Text(
+                                money[index],
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2!
+                                    .copyWith(
+                                        color: defaultChoiceIndex == index
+                                            ? Colors.white
+                                            : Colors.green,
+                                        fontSize: 14),
+                              ),
+                              selected: defaultChoiceIndex == index,
+                              disabledColor: Colors.red,
+                              side: BorderSide(
+                                color: defaultChoiceIndex == index
+                                    ? Colors.white
+                                    : Colors.green,
+                              ),
+                              selectedColor: HexColor("#07A279"),
+                              backgroundColor: Colors.transparent,
+                              onSelected: (value) {
+                                setState(() {
+                                  defaultChoiceIndex =
+                                      value ? index : defaultChoiceIndex;
+                                  // passvalue();
+                                });
+                              },
+                            );
+                          }),
+                        ),
+                        Text(
+                          "Type your own amount",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            height: 1.5,
+                            fontSize: 16,
+                            color: HexColor("#001921"),
+                            fontFamily: 'SF Pro Display',
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        textinputfield(
+                          controllers: email,
+                          validator: validateEmail,
+                          textcolor: Colors.black,
+                          text: defaultChoiceIndex == 0
+                              ? "Enter the amount"
+                              : passvalue().toString(),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 48,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      HexColor('#07A279'))),
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => new_password()));
+                              },
+                              child: Text("Start Shift Now     >")),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          height: 1.5,
-                          fontSize: 16,
-                          fontFamily: 'SF Pro Display',
-                          color: HexColor("#99A2AB")),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    tabs(),
-                    tabs1()
-                  ],
-                ),
-              )),
+                  )),
+            );
+          },
         );
       },
-    );
-  }
-
-  tabs() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Wrap(
-          spacing: 8,
-          children: List.generate(money.length, (index) {
-            return ChoiceChip(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
-              labelPadding:
-                  EdgeInsets.only(left: 15.0, top: 3, bottom: 3, right: 15),
-              label: Text(
-                money[index],
-                style: Theme.of(context).textTheme.bodyText2!.copyWith(
-                    color: defaultChoiceIndex == index
-                        ? Colors.white
-                        : Colors.green,
-                    fontSize: 14),
-              ),
-              selected: defaultChoiceIndex == index,
-              disabledColor: Colors.red,
-              side: BorderSide(
-                color:
-                    defaultChoiceIndex == index ? Colors.white : Colors.green,
-              ),
-              selectedColor: HexColor("#07A279"),
-              backgroundColor: Colors.transparent,
-              onSelected: (value) {
-                setState(() {
-                  defaultChoiceIndex = value ? index : defaultChoiceIndex;
-                  passvalue();
-                });
-              },
-            );
-          }),
-        )
-      ],
-    );
-  }
-
-  tabs1() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Type your own amount",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            height: 1.5,
-            fontSize: 16,
-            color: HexColor("#001921"),
-            fontFamily: 'SF Pro Display',
-          ),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        textinputfield(
-          controllers: email,
-          validator: validateEmail,
-          text: defaultChoiceIndex == 0
-              ? "Enter the amount"
-              : passvalue().toString(),
-        ),
-        SizedBox(
-          height: 20,
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 48,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-          child: ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(HexColor('#07A279'))),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => new_password()));
-              },
-              child: Text("Start Shift Now     >")),
-        ),
-      ],
     );
   }
 

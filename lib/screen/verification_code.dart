@@ -5,6 +5,7 @@ import 'package:ui/screen/new_password.dart';
 import 'package:ui/screen/sign_in.dart';
 
 import '../button.dart';
+import '../constant.dart';
 import '../textinputfield.dart';
 import 'forgot_page.dart';
 
@@ -85,7 +86,11 @@ class _verification_codeState extends State<verification_code> {
                         )
                       ],
                     )),
-                textinputfield(text: "Email Address", maxlength: 6),
+                textinputfield(
+                  text: "Email Address",
+                  maxlength: 6,
+                  textcolor: textcolor,
+                ),
                 Container(
                   width: 385,
                   height: 48,

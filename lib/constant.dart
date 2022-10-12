@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 var textinputcolor = Colors.red;
-RegExp regex =
-RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-var butoncolor=HexColor('hexColor');
+var textcolor = Colors.white;
 
+RegExp regex =
+    RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+var butoncolor = HexColor('hexColor');
 
 String? validateEmail(String? value) {
   String pattern =
@@ -47,7 +48,6 @@ String? validatePassword(String? value) {
 }
 
 String? validateConfPassword(String? value) {
-
   if (value!.isEmpty) {
     return 'Please enter Confirm password';
   } else if (value != validatePassword) {

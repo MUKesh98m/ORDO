@@ -13,6 +13,7 @@ class textinputfield extends StatelessWidget {
     this.validator,
     this.controllers,
     this.isObscure = false,
+    this.textcolor,
   }) : super(key: key);
   final icon;
   final text;
@@ -22,6 +23,7 @@ class textinputfield extends StatelessWidget {
   final validator;
   final controllers;
   final isObscure;
+  final textcolor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class textinputfield extends StatelessWidget {
       validator: validator,
       controller: controllers,
       obscureText: isObscure,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: textcolor),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.only(top: 10),
           hintText: text,

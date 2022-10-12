@@ -112,6 +112,8 @@ class _validationState extends State<validation> {
                   textinputfield(
                       text: "Password",
                       controllers: pass,
+                      textcolor: Colors.white,
+
                       suffixicon: Icons.remove_red_eye_rounded,
                       suffixiconcolor: Colors.white,
                       validator: (val) {

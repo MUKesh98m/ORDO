@@ -114,6 +114,7 @@ class _new_passwordState extends State<new_password> {
                   textinputfield(
                       text: "Password",
                       controllers: pass,
+                      textcolor: textcolor,
                       isObscure: true,
                       suffixicon: Icons.remove_red_eye_rounded,
                       suffixiconcolor: Colors.white,
@@ -133,9 +134,9 @@ class _new_passwordState extends State<new_password> {
                   ),
                   textinputfield(
                     controllers: conf_pass,
+                    textcolor: textcolor,
                     text: "Confirm Password",
                     isObscure: true,
-
                     suffixicon: Icons.remove_red_eye_rounded,
                     suffixiconcolor: Colors.white,
                     validator: (val) {
