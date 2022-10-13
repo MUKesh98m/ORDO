@@ -114,8 +114,6 @@ class _new_passwordState extends State<new_password> {
                   textinputfield(
                       text: "Password",
                       controllers: pass,
-                      textcolor: textcolor,
-                      isObscure: true,
                       suffixicon: Icons.remove_red_eye_rounded,
                       suffixiconcolor: Colors.white,
                       validator: (val) {
@@ -134,9 +132,7 @@ class _new_passwordState extends State<new_password> {
                   ),
                   textinputfield(
                     controllers: conf_pass,
-                    textcolor: textcolor,
                     text: "Confirm Password",
-                    isObscure: true,
                     suffixicon: Icons.remove_red_eye_rounded,
                     suffixiconcolor: Colors.white,
                     validator: (val) {
@@ -162,7 +158,7 @@ class _new_passwordState extends State<new_password> {
                     height: 40,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: 385,
                     height: 48,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),
