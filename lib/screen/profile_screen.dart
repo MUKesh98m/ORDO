@@ -26,13 +26,14 @@ class _profile_screenState extends State<profile_screen> {
   int selectedIndex = -1;
   String? username;
   List money = ['€100', '€200', '€300', 'Other'];
-  TextEditingController email = TextEditingController();
+  TextEditingController amount = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   int? defaultChoiceIndex;
 
   @override
   void initState() {
+    amount.clear();
     defaultChoiceIndex = 0;
     super.initState();
   }
@@ -40,151 +41,149 @@ class _profile_screenState extends State<profile_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30, right: 30),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(255, 255, 255, 0.1),
-                          borderRadius: BorderRadius.all(Radius.circular(3))),
-                      height: 40,
-                      width: 40,
-                      child: IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.person,
-                            color: HexColor("#57616A"),
-                          )),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Color.fromRGBO(255, 255, 255, 0.1),
-                          borderRadius: BorderRadius.all(Radius.circular(3))),
-                      height: 40,
-                      width: 40,
-                      child: IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.notifications,
-                            color: HexColor("#57616A"),
-                          )),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-                CircleAvatar(
-                  backgroundColor: HexColor("#E5E5E5"),
-                  radius: 60,
-                  child: Image.asset('assets/Ellipse .png'),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Text(
-                  "Hi, Kristi ",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'SF Pro Display',
-                    fontSize: 34,
-                  ),
-                ),
-                SizedBox(height: 10),
-                InkWell(
-                  onTap: () {
-                    bottomsheet();
-                  },
-                  child: Container(
-                    width: 220,
-                    height: 50,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30, top: 30, right: 30),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
                     decoration: BoxDecoration(
-                        color: HexColor("#E5E5E5"),
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/Ellipse1.png",
-                          height: 29,
-                          width: 29,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                            selectedIndex == null
-                                ? "Barbecue Nation"
-                                : passvalue1().toString(),
-                            style: GoogleFonts.alike(
-                              fontSize: 16,
-                              color: HexColor("#57616A"),
-                            )),
-                        Icon(Icons.keyboard_arrow_down)
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Table Assignment",
-                        style: GoogleFonts.alike(
-                          fontSize: 16,
+                        color: Color.fromRGBO(255, 255, 255, 0.1),
+                        borderRadius: BorderRadius.all(Radius.circular(3))),
+                    height: 40,
+                    width: 40,
+                    child: IconButton(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.person,
                           color: HexColor("#57616A"),
                         )),
-                    Icon(Icons.keyboard_arrow_right, color: HexColor("#57616A"))
-                  ],
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  height: 65,
-                  decoration: BoxDecoration(
-                      color: HexColor("#E7F6F2"),
-                      borderRadius: BorderRadius.all(Radius.circular(50))),
-                  padding: EdgeInsets.only(left: 10, right: 10),
-                  child: SwipeButton(
-                    activeThumbColor: Colors.green,
-                    activeTrackColor: HexColor("#E7F6F2"),
-                    child: Text(
-                      "Start Shift",
-                      style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    onSwipe: () {
-                      bottomsheet1();
-                    },
                   ),
-                )
-              ],
-            ),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 255, 255, 0.1),
+                        borderRadius: BorderRadius.all(Radius.circular(3))),
+                    height: 40,
+                    width: 40,
+                    child: IconButton(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(
+                          Icons.notifications,
+                          color: HexColor("#57616A"),
+                        )),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              CircleAvatar(
+                backgroundColor: HexColor("#E5E5E5"),
+                radius: 60,
+                child: Image.asset('assets/Ellipse .png'),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Text(
+                "Hi, Kristi ",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'SF Pro Display',
+                  fontSize: 34,
+                ),
+              ),
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  bottomsheet();
+                },
+                child: Container(
+                  width: 220,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: HexColor("#E5E5E5"),
+                      borderRadius: BorderRadius.all(Radius.circular(50))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "assets/Ellipse1.png",
+                        height: 29,
+                        width: 29,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Text(
+                          selectedIndex == -1
+                              ? "Barbecue Nation"
+                              : passvalue1().toString(),
+                          style: GoogleFonts.alike(
+                            fontSize: 16,
+                            color: HexColor("#57616A"),
+                          )),
+                      Icon(Icons.keyboard_arrow_down)
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Table Assignment",
+                      style: GoogleFonts.alike(
+                        fontSize: 16,
+                        color: HexColor("#57616A"),
+                      )),
+                  Icon(Icons.keyboard_arrow_right, color: HexColor("#57616A"))
+                ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: 65,
+                decoration: BoxDecoration(
+                    color: HexColor("#E7F6F2"),
+                    borderRadius: BorderRadius.all(Radius.circular(50))),
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: SwipeButton(
+                  activeThumbColor: Colors.green,
+                  activeTrackColor: HexColor("#E7F6F2"),
+                  child: Text(
+                    "Start Shift",
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  onSwipe: () {
+                    bottomsheet1();
+                  },
+                ),
+              )
+            ],
           ),
         ),
       ),
@@ -207,7 +206,11 @@ class _profile_screenState extends State<profile_screen> {
         return Container(
           width: 100,
           child: Padding(
-              padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+              padding: EdgeInsets.only(
+                left: 20,
+                top: 20,
+                right: 20,
+              ),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,6 +256,7 @@ class _profile_screenState extends State<profile_screen> {
                                     selectedIndex = index;
                                     // print(index);
                                   });
+
                                   if (passvalue1() != null) {
                                     Navigator.pop(context);
                                   } else {
@@ -293,6 +297,7 @@ class _profile_screenState extends State<profile_screen> {
 
   bottomsheet1() {
     showModalBottomSheet(
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(15),
@@ -304,120 +309,131 @@ class _profile_screenState extends State<profile_screen> {
         return StatefulBuilder(
           builder:
               (BuildContext context, void Function(void Function()) setState) {
-            return Container(
-              height: MediaQuery.of(context).size.height,
-              child: Padding(
-                  padding: EdgeInsets.only(left: 20, top: 20, right: 20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Starting Balance",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24,
-                            fontFamily: 'SF Pro Display',
-                          ),
+            return Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(
+                    left: 20,
+                    top: 20,
+                    right: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Starting Balance",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24,
+                          fontFamily: 'SF Pro Display',
                         ),
-                        Text(
-                          "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              height: 1.5,
-                              fontSize: 16,
-                              fontFamily: 'SF Pro Display',
-                              color: HexColor("#99A2AB")),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        // Container(height: 210, child: money())
-
-                        Wrap(
-                          spacing: 8,
-                          children: List.generate(money.length, (index) {
-                            return ChoiceChip(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8))),
-                              labelPadding: EdgeInsets.only(
-                                  left: 15.0, top: 3, bottom: 3, right: 15),
-                              label: Text(
-                                money[index],
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2!
-                                    .copyWith(
-                                        color: defaultChoiceIndex == index
-                                            ? Colors.white
-                                            : Colors.green,
-                                        fontSize: 14),
-                              ),
-                              selected: defaultChoiceIndex == index,
-                              disabledColor: Colors.red,
-                              side: BorderSide(
-                                color: defaultChoiceIndex == index
-                                    ? Colors.white
-                                    : Colors.green,
-                              ),
-                              selectedColor: HexColor("#07A279"),
-                              backgroundColor: Colors.transparent,
-                              onSelected: (value) {
-                                setState(() {
-                                  defaultChoiceIndex =
-                                      value ? index : defaultChoiceIndex;
-                                  // passvalue();
-                                });
-                              },
-                            );
-                          }),
-                        ),
-                        Text(
-                          "Type your own amount",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                      ),
+                      Text(
+                        "Lorem ipsum dolor sit amet, consectetur \nviverra vestibulum sodales.",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
                             height: 1.5,
                             fontSize: 16,
-                            color: HexColor("#001921"),
                             fontFamily: 'SF Pro Display',
+                            color: HexColor("#99A2AB")),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // Container(height: 210, child: money()),
+                      Wrap(
+                        spacing: 8,
+                        children: List.generate(money.length, (index) {
+                          return ChoiceChip(
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8))),
+                            labelPadding: EdgeInsets.only(
+                                left: 15.0, top: 3, bottom: 3, right: 15),
+                            label: Text(
+                              money[index],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(
+                                      color: defaultChoiceIndex == index
+                                          ? Colors.white
+                                          : Colors.green,
+                                      fontSize: 14),
+                            ),
+                            selected: defaultChoiceIndex == index,
+                            disabledColor: Colors.red,
+                            side: BorderSide(
+                              color: defaultChoiceIndex == index
+                                  ? Colors.white
+                                  : Colors.green,
+                            ),
+                            selectedColor: HexColor("#07A279"),
+                            backgroundColor: Colors.transparent,
+                            onSelected: (value) {
+                              setState(() {
+                                defaultChoiceIndex =
+                                    value ? index : defaultChoiceIndex;
+                                passvalue();
+                                if (index == money.length) {
+                                  amount.text = ' ';
+                                } else {
+                                  amount.text = money[index];
+                                }
+                              });
+                            },
+                          );
+                        }),
+                      ),
+
+                      Text(
+                        "Type your own amount",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          height: 1.5,
+                          fontSize: 16,
+                          color: HexColor("#001921"),
+                          fontFamily: 'SF Pro Display',
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: amount,
+                        onChanged: (value) {},
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: 10, left: 25),
+                          hintText: "Enter Amount",
+                          hintStyle: TextStyle(color: HexColor("#99A2AB")),
+                          filled: true,
+                          fillColor: Color.fromRGBO(255, 255, 255, 0.1),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
+                          prefixIconColor: Colors.white,
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        textinputfield(
-                          controllers: email,
-                          validator: validateEmail,
-                          textcolor: Colors.black,
-                          text: defaultChoiceIndex == 0
-                              ? "Enter the amount"
-                              : passvalue().toString(),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 48,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStatePropertyAll(
-                                      HexColor('#07A279'))),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => new_password()));
-                              },
-                              child: Text("Start Shift Now     >")),
-                        ),
-                      ],
-                    ),
-                  )),
-            );
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 48,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStatePropertyAll(
+                                    HexColor('#07A279'))),
+                            onPressed: () {},
+                            child: Text("Start Shift Now     >")),
+                      ),
+                    ],
+                  ),
+                ));
           },
         );
       },
@@ -426,7 +442,7 @@ class _profile_screenState extends State<profile_screen> {
 
   passvalue() {
     if (defaultChoiceIndex == 0) {
-      return 100;
+      return amount.text;
       // print("100");
     } else if (defaultChoiceIndex == 1) {
       // print("200");

@@ -21,7 +21,6 @@ class _forgot_pageState extends State<forgot_page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -93,13 +92,13 @@ class _forgot_pageState extends State<forgot_page> {
                   textinputfield(
                       controllers: email,
                       validator: validateEmail,
-                      textcolor: textcolor,
+                      icon: Icons.lock_open_sharp,
                       text: "Email Address"),
                   SizedBox(
                     height: 20,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: 385,
                     height: 48,
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),

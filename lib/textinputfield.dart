@@ -14,6 +14,8 @@ class textinputfield extends StatelessWidget {
     this.controllers,
     this.isObscure = false,
     this.textcolor,
+    this.keyboardtype,
+    this.onchanged,
   }) : super(key: key);
   final icon;
   final text;
@@ -24,6 +26,8 @@ class textinputfield extends StatelessWidget {
   final controllers;
   final isObscure;
   final textcolor;
+  final keyboardtype;
+  final onchanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,7 @@ class textinputfield extends StatelessWidget {
       maxLength: maxlength,
       validator: validator,
       controller: controllers,
+      onChanged: onchanged,
       obscureText: isObscure,
       style: TextStyle(color: textcolor),
       decoration: InputDecoration(

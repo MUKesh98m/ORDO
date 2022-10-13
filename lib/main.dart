@@ -7,7 +7,6 @@ import 'package:ui/screen/forgot_page.dart';
 import 'package:ui/screen/new_password.dart';
 import 'package:ui/screen/profile_screen.dart';
 import 'package:ui/screen/sign_in.dart';
-import 'package:ui/screen/swipe%20button.dart';
 import 'package:ui/screen/verification_code.dart';
 import 'package:ui/validation.dart';
 
